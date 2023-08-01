@@ -1,0 +1,36 @@
+// Function to add a new task
+function addTask() {
+    const taskInput = document.getElementById("taskInput");
+    const taskList = document.getElementById("taskList");
+
+    if (taskInput.value.trim() === "") {
+        alert("Please enter a task.");
+        return;
+    }
+
+    const taskItem = document.createElement("li");
+    const taskText = document.createTextNode(taskInput.value);
+
+    taskItem.appendChild(taskText);
+    taskList.appendChild(taskItem);
+
+    taskInput.value = "";
+
+    // Add delete functionality to the new task
+    taskItem.addEventListener("click", function() {
+        this.remove();
+    });
+}
+
+// Function to initialize the delete functionality for existing tasks
+function initDeleteFunctionality() {
+    const taskItems = document.getElementsByTagName("li");
+    for (let i = 0; i < taskItems.length; i++) {
+        taskItems[i].addEventListener("click", function() {
+            this.remove();
+        });
+    }
+}
+
+// Call the initialization function
+initDeleteFunctionality();
